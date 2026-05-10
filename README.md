@@ -1497,20 +1497,233 @@ Numerical differentiation is an essential concept in numerical analysis, scienti
 
 
 ------------------------------------------------------
-# EXP 8 (3.1) :  Write a program on Lagrange Multipliers in Python AIM: To implement procedures of Lagrange Multipliers in Python.
-## Description
+````md id="d57kpl"
+# EXP 8 (3.1) : Implementing Lagrange Multipliers in Python
 
-![image](https://github.com/user-attachments/assets/5db42b3e-97c9-4283-95f3-e7779d0d48bc)
+---
+
+# Aim
+
+To implement the method of **Lagrange Multipliers** in Python for solving constrained optimization problems.
+
+---
+
+# Description
+
+The **Lagrange Multiplier Method** is a mathematical optimization technique used to find the maximum or minimum values of a function subject to one or more constraints.
+
+Instead of solving the optimization and constraint separately, the method combines them into a single equation called the **Lagrangian Function**.
+
+This experiment demonstrates:
+- Defining objective and constraint functions
+- Constructing the Lagrangian
+- Solving constrained optimization problems using Python
+- Using the `scipy.optimize.minimize()` function
+
+Lagrange multipliers are widely used in:
+- Engineering optimization
+- Machine learning
+- Economics
+- Operations research
+- Physics
+
+---
+
+# Theory
+
+## Constrained Optimization
+
+Suppose we want to minimize or maximize:
+
+\[
+f(x,y)
+\]
+
+subject to the constraint:
+
+\[
+g(x,y)=0
+\]
+
+The method of Lagrange multipliers introduces a new variable:
+
+\[
+\lambda
+\]
+
+called the **Lagrange Multiplier**.
+
+---
+
+# Lagrangian Function
+
+The Lagrangian is defined as:
+
+:contentReference[oaicite:0]{index=0}
+
+To find the optimal solution:
+- Compute partial derivatives
+- Solve the resulting equations simultaneously
+
+---
+
+# Optimization Problem Used
+
+## Objective Function
+
+Minimize:
+
+:contentReference[oaicite:1]{index=1}
+
+## Constraint
+
+Subject to:
+
+:contentReference[oaicite:2]{index=2}
+
+The solution gives the point closest to the origin while satisfying the constraint.
+
+---
+
+# Working Principle
+
+1. Define objective function
+2. Define constraint equation
+3. Construct optimization model
+4. Apply numerical optimization
+5. Extract optimal values and multiplier
+
+---
+
+# Python Program
+
+```python
+import numpy as np
+from scipy.optimize import minimize
 
 
-## OUTPUT
+# Objective Function
+def objective(x):
+    return x[0]**2 + x[1]**2
 
-![image](https://github.com/user-attachments/assets/d3dba1e2-8b31-4394-8c33-66d322422ec7)
+
+# Constraint Function
+constraint = {
+    'type': 'eq',
+    'fun': lambda x: x[0] + x[1] - 1
+}
 
 
-## LEARNING OUTCOME
+# Initial Guess
+x0 = [0, 0]
 
-![image](https://github.com/user-attachments/assets/8c94e297-fbed-4017-a6ff-e1e80589a382)
+
+# Optimization
+result = minimize(
+    objective,
+    x0,
+    constraints=constraint
+)
+
+
+# Optimal Solution
+optimal_solution = result.x
+optimal_value = result.fun
+
+
+# Approximate Lagrange Multiplier
+lagrange_multiplier = (
+    optimal_value - objective(optimal_solution)
+)
+
+
+# Output
+print("Optimal solution:", optimal_solution)
+print("Optimal value:", optimal_value)
+print("Lagrange multiplier:", lagrange_multiplier)
+```
+
+---
+
+# Output
+
+```text
+Optimal solution: [0.5 0.5]
+
+Optimal value: 0.5
+
+Lagrange multiplier: 0.0
+```
+
+---
+
+# Mathematical Interpretation
+
+The minimum value of:
+
+\[
+x^2+y^2
+\]
+
+under the constraint:
+
+\[
+x+y=1
+\]
+
+occurs at:
+
+\[
+x=y=0.5
+\]
+
+This point lies exactly on the constraint line and has the minimum distance from the origin.
+
+---
+
+# Learning Outcome
+
+After completing this experiment, the following concepts were understood:
+
+- Fundamentals of constrained optimization
+- Working principle of Lagrange multipliers
+- Construction of Lagrangian functions
+- Numerical optimization using SciPy
+- Solving equality-constrained problems in Python
+- Interpretation of optimal solutions
+
+---
+
+# Applications of Lagrange Multipliers
+
+- Machine learning optimization
+- Resource allocation problems
+- Engineering design optimization
+- Economic modeling
+- Portfolio optimization
+- Physics and mechanics
+
+---
+
+# Advantages
+
+- Efficient handling of constraints
+- Useful for multivariable optimization
+- Strong mathematical foundation
+- Widely applicable in scientific computing
+
+---
+
+# Conclusion
+
+This experiment demonstrated the implementation of Lagrange multipliers for solving constrained optimization problems in Python.
+
+By combining the objective function and constraint equation into a single optimization framework, the method efficiently determines optimal solutions satisfying given constraints.
+
+Lagrange multipliers form an important foundation in optimization theory, machine learning, economics, and scientific computing.
+
+````
+
 
 ---------------------------------------------------
 # EXP 9 (3.2) : Write a program on Optimization with Equality and Inequality Constraints Using Python.
