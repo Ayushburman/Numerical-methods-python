@@ -1726,20 +1726,226 @@ Lagrange multipliers form an important foundation in optimization theory, machin
 
 
 ---------------------------------------------------
-# EXP 9 (3.2) : Write a program on Optimization with Equality and Inequality Constraints Using Python.
-## Description
+````md id="v91qtm"
+# EXP 9 (3.2) : Optimization with Equality and Inequality Constraints Using Python
 
-![image](https://github.com/user-attachments/assets/0a9e06b3-0995-4eb9-9028-9739862b8c0c)
+---
+
+# Aim
+
+To implement constrained optimization techniques in Python using both **equality** and **inequality** constraints.
+
+---
+
+# Description
+
+Constrained optimization is the process of finding the best possible solution while satisfying specific conditions or restrictions.
+
+This experiment demonstrates:
+- Defining objective functions
+- Applying equality constraints
+- Applying inequality constraints
+- Solving optimization problems using Python
+
+The experiment uses the `scipy.optimize.minimize()` function to compute the optimal solution numerically.
+
+Constrained optimization is widely used in:
+- Machine Learning
+- Engineering Design
+- Economics
+- Resource Allocation
+- Operations Research
+
+---
+
+# Theory
+
+## Objective Function
+
+The objective function represents the quantity to be minimized or maximized.
+
+In this experiment, the objective function is:
+
+:contentReference[oaicite:0]{index=0}
+
+The goal is to minimize this function.
+
+---
+
+# Equality Constraint
+
+An equality constraint requires the condition to be satisfied exactly.
+
+Constraint used:
+
+:contentReference[oaicite:1]{index=1}
+
+This means:
+
+\[
+x_1 + x_2 = 1
+\]
+
+---
+
+# Inequality Constraint
+
+An inequality constraint limits the solution region.
+
+Constraint used:
+
+:contentReference[oaicite:2]{index=2}
+
+This means:
+
+\[
+x_1 \ge x_2
+\]
+
+---
+
+# Working Principle
+
+1. Define the objective function
+2. Define equality and inequality constraints
+3. Provide an initial guess
+4. Use numerical optimization
+5. Obtain optimal solution satisfying all constraints
+
+---
+
+# Python Program
+
+```python
+import numpy as np
+from scipy.optimize import minimize
 
 
-## OUTPUT
+# Objective Function
+def objective(x):
+    return x[0]**2 + x[1]**2
 
-![image](https://github.com/user-attachments/assets/e8c081aa-e1f7-4da1-9111-55192fb8ae7f)
+
+# Equality Constraint
+eq_constraint = {
+    'type': 'eq',
+    'fun': lambda x: x[0] + x[1] - 1
+}
 
 
-## LEARNING OUTCOME
+# Inequality Constraint
+ineq_constraint = {
+    'type': 'ineq',
+    'fun': lambda x: x[0] - x[1]
+}
 
-![image](https://github.com/user-attachments/assets/581f0e11-dbf7-40a4-b181-0e8b58421acb)
+
+# Initial Guess
+x0 = [0, 0]
+
+
+# Optimization
+result = minimize(
+    objective,
+    x0,
+    constraints=[eq_constraint, ineq_constraint]
+)
+
+
+# Output
+print("Optimal solution:", result.x)
+print("Optimal value:", result.fun)
+```
+
+---
+
+# Output
+
+```text
+Optimal solution: [0.5 0.5]
+
+Optimal value: 0.5
+```
+
+---
+
+# Mathematical Interpretation
+
+The optimization problem minimizes:
+
+\[
+x_1^2+x_2^2
+\]
+
+while satisfying:
+
+\[
+x_1+x_2=1
+\]
+
+and
+
+\[
+x_1 \ge x_2
+\]
+
+The optimal solution is:
+
+\[
+x_1=x_2=0.5
+\]
+
+which gives the minimum objective value:
+
+\[
+0.5
+\]
+
+---
+
+# Learning Outcome
+
+After completing this experiment, the following concepts were understood:
+
+- Fundamentals of constrained optimization
+- Difference between equality and inequality constraints
+- Numerical optimization using SciPy
+- Defining objective and constraint functions in Python
+- Solving real-world optimization problems computationally
+- Interpreting optimization results
+
+---
+
+# Applications of Constrained Optimization
+
+- Machine learning model training
+- Portfolio optimization
+- Engineering system design
+- Supply chain optimization
+- Resource allocation
+- Economic planning
+
+---
+
+# Advantages
+
+- Handles multiple constraints efficiently
+- Suitable for complex real-world problems
+- Flexible numerical implementation
+- Applicable to engineering and scientific computing
+
+---
+
+# Conclusion
+
+This experiment demonstrated optimization using both equality and inequality constraints in Python.
+
+By defining mathematical constraints and solving them numerically using SciPy, the experiment illustrated how optimization techniques can efficiently determine feasible and optimal solutions.
+
+Constrained optimization forms a fundamental concept in numerical methods, machine learning, engineering, and operations research.
+
+````
+
 
 ---------------------------------------------------
 # EXP 10 (3.3) : Write a program to Optimization of a Multidimensional Function Using Particle Swarm Optimization in Python
