@@ -1948,17 +1948,219 @@ Constrained optimization forms a fundamental concept in numerical methods, machi
 
 
 ---------------------------------------------------
-# EXP 10 (3.3) : Write a program to Optimization of a Multidimensional Function Using Particle Swarm Optimization in Python
-## Description
+````md id="u28xmv"
+# EXP 10 (3.3) : Optimization of a Multidimensional Function Using Particle Swarm Optimization (PSO) in Python
 
-![image](https://github.com/user-attachments/assets/1b24e15c-5047-4259-bd60-0d41c0cdc2e6)
+---
 
-## OUTPUT
+# Aim
 
-![image](https://github.com/user-attachments/assets/05853f1f-e330-411f-bedc-8268f09f879c)
+To implement **Particle Swarm Optimization (PSO)** in Python for optimizing a multidimensional mathematical function.
 
-## LEARNING OUTCOME
+---
 
-![image](https://github.com/user-attachments/assets/8228ff10-42ec-4c6b-8083-690f1da51445)
+# Description
+
+Particle Swarm Optimization (PSO) is a population-based optimization algorithm inspired by the collective behavior of birds flocking and fish schooling.
+
+In PSO:
+- Multiple particles explore the search space
+- Each particle adjusts its position based on:
+  - its own best solution
+  - the swarm’s global best solution
+- The swarm gradually converges toward the optimal solution
+
+This experiment uses the `pyswarm` library to minimize a multidimensional objective function.
+
+---
+
+# Theory
+
+## Particle Swarm Optimization (PSO)
+
+PSO is a stochastic optimization technique where each particle represents a candidate solution.
+
+Each particle has:
+- Position
+- Velocity
+- Personal best position
+- Global best position
+
+Particles move through the search space iteratively to minimize or maximize the objective function.
+
+---
+
+# Objective Function
+
+The function used in this experiment is:
+
+:contentReference[oaicite:0]{index=0}
+
+This is known as the **Sphere Function**, a common benchmark optimization function.
+
+The global minimum occurs at:
+
+\[
+x_i = 0
+\]
+
+for all dimensions.
+
+Minimum value:
+
+\[
+f(x)=0
+\]
+
+---
+
+# PSO Velocity Update Equation
+
+Each particle updates its velocity using:
+
+:contentReference[oaicite:1]{index=1}
+
+where:
+- \(w\) = inertia weight
+- \(c_1,c_2\) = learning factors
+- \(p_i\) = particle best position
+- \(g\) = global best position
+
+---
+
+# Position Update
+
+The new position is calculated as:
+
+:contentReference[oaicite:2]{index=2}
+
+---
+
+# Working Principle
+
+1. Initialize particles randomly
+2. Evaluate objective function
+3. Update personal and global bests
+4. Update velocities and positions
+5. Repeat until convergence
+
+---
+
+# Python Program
+
+```python
+import numpy as np
+from pyswarm import pso
+
+
+# Objective Function
+def objective_function(x):
+    return np.sum(x**2)
+
+
+# Lower and Upper Bounds
+lb = [-10, -10, -10]
+ub = [10, 10, 10]
+
+
+# Running PSO
+optimal_solution, optimal_value = pso(
+    objective_function,
+    lb,
+    ub
+)
+
+
+# Output
+print("Optimal solution:", optimal_solution)
+print("Optimal value:", optimal_value)
+```
+
+---
+
+# Output
+
+```text
+Stopping search: Swarm best objective change less than 1e-08
+
+Optimal solution:
+[-3.63491570e-05  1.11508936e-04 -2.42801566e-05]
+
+Optimal value:
+1.4345029986923108e-08
+```
+
+---
+
+# Interpretation of Results
+
+The obtained solution values are extremely close to zero, which confirms successful minimization of the objective function.
+
+Since the Sphere Function has a global minimum at:
+
+\[
+(0,0,0)
+\]
+
+PSO successfully converged near the optimal point.
+
+---
+
+# Learning Outcome
+
+After completing this experiment, the following concepts were understood:
+
+- Fundamentals of Particle Swarm Optimization
+- Population-based optimization techniques
+- Optimization of multidimensional functions
+- Swarm intelligence concepts
+- Numerical optimization using Python libraries
+- Interpretation of optimization convergence results
+
+---
+
+# Advantages of PSO
+
+- Simple implementation
+- Efficient global search capability
+- No derivative calculation required
+- Suitable for nonlinear optimization problems
+- Works well in multidimensional spaces
+
+---
+
+# Applications of PSO
+
+- Machine learning optimization
+- Neural network training
+- Engineering design optimization
+- Robotics
+- Data mining
+- Control systems
+- Scientific computing
+
+---
+
+# Comparison with Traditional Optimization
+
+| Feature | Traditional Methods | PSO |
+|---|---|---|
+| Requires Derivatives | Often Yes | No |
+| Handles Nonlinearity | Limited | Excellent |
+| Global Optimization | Difficult | Strong |
+| Complexity | Mathematical | Population-based |
+| Multidimensional Problems | Challenging | Efficient |
+
+---
+
+# Conclusion
+
+This experiment demonstrated the implementation of Particle Swarm Optimization (PSO) for solving multidimensional optimization problems in Python.
+
+PSO uses swarm intelligence principles to iteratively improve candidate solutions and efficiently locate the global optimum.
+
+It is a powerful optimization technique widely used in artificial intelligence, machine learning, engineering, and scientific research.
+
+````
 
 --------------------------------------------------
