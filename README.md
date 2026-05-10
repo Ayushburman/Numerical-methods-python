@@ -184,24 +184,254 @@ My name is Raj and I am 25 years old.
 
 ---
 
+# EXP 2 (1.2) : Implementations of Different Data Structures in Python
+
+---
+
+# Description
+
+This experiment demonstrates the implementation of fundamental data structures using Python.  
+The program includes implementations of:
+
+- Stack
+- Queue
+- Linked List
+
+Each data structure is implemented with its basic operations and demonstrated with sample outputs.
+
+The objective of this experiment is to understand how different data structures organize, store, and manage data efficiently.
+
+---
+
+# Theory
+
+## 1. Stack
+
+A **Stack** is a linear data structure that follows the **LIFO (Last In First Out)** principle.
+
+### Operations Performed
+
+- `push()` → Adds an element to the top
+- `pop()` → Removes the top element
+- `peek()` → Displays the top element
+- `size()` → Returns the number of elements
+
+### Example
+
+```python
+stack = [1, 2, 3]
+```
+
+Visualization:
+
+```text
+Top
+ ↓
+[1, 2, 3]
+```
+
+---
+
+## 2. Queue
+
+A **Queue** is a linear data structure that follows the **FIFO (First In First Out)** principle.
+
+### Operations Performed
+
+- `enqueue()` → Inserts an element
+- `dequeue()` → Removes the first element
+- `size()` → Returns queue size
+
+### Example
+
+```python
+queue = [1, 2, 3]
+```
+
+Visualization:
+
+```text
+Front → [1, 2, 3] → Rear
+```
+
+---
+
+## 3. Linked List
+
+A **Linked List** is a dynamic linear data structure where elements are connected using pointers.
+
+Each node contains:
+- Data
+- Reference to next node
+
+### Operations Performed
+
+- `append()` → Adds a node at the end
+- `display()` → Displays all nodes
+
+### Visualization
+
+```text
+[1] → [2] → [3] → NULL
+```
+
+---
+
+# Python Program
+
+```python
+# Stack Implementation
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
+    def peek(self):
+        return self.items[-1]
+
+    def size(self):
+        return len(self.items)
+
+
+# Queue Implementation
+class Queue:
+    def __init__(self):
+        self.items = []
+
+    def enqueue(self, item):
+        self.items.append(item)
+
+    def dequeue(self):
+        return self.items.pop(0)
+
+    def size(self):
+        return len(self.items)
+
+
+# Linked List Node
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+# Linked List Implementation
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        new_node = Node(data)
+
+        if not self.head:
+            self.head = new_node
+            return
+
+        last = self.head
+
+        while last.next:
+            last = last.next
+
+        last.next = new_node
+
+    def display(self):
+        current = self.head
+
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+
+        print("NULL")
+
+
+# Stack Operations
+print("Stack Operations:")
+
+stack = Stack()
+
+stack.push(1)
+stack.push(2)
+stack.push(3)
+
+print("Stack:", stack.items)
+print("Pop:", stack.pop())
+print("Peek:", stack.peek())
+print("Stack size:", stack.size())
+
+
+# Queue Operations
+print("\nQueue Operations:")
+
+queue = Queue()
+
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+
+print("Queue:", queue.items)
+print("Dequeue:", queue.dequeue())
+print("Queue size:", queue.size())
+
+
+# Linked List Operations
+print("\nLinked List Operations:")
+
+linked_list = LinkedList()
+
+linked_list.append(1)
+linked_list.append(2)
+linked_list.append(3)
+
+linked_list.display()
+```
+
+---
+
+# Output
+
+```text
+Stack Operations:
+Stack: [1, 2, 3]
+Pop: 3
+Peek: 2
+Stack size: 2
+
+Queue Operations:
+Queue: [1, 2, 3]
+Dequeue: 1
+Queue size: 2
+
+Linked List Operations:
+1 -> 2 -> 3 -> NULL
+```
+
+---
+
 # Learning Outcome
 
 After completing this experiment, the following concepts were understood:
 
-- Basics of Python programming
-- Variable declaration and usage
-- Python data types
-- Decision-making and looping statements
-- Function creation and usage
-- Use of default parameters
-- Writing clean and readable Python code
+- Working of Stack using LIFO principle
+- Working of Queue using FIFO principle
+- Dynamic memory structure of Linked List
+- Basic operations of linear data structures
+- Data insertion and deletion techniques
+- Practical implementation of data structures using Python
 
 ---
 
 # Conclusion
 
-This experiment helped in understanding the core building blocks of Python programming.  
-These concepts form the foundation for advanced topics such as data structures, numerical methods, optimization techniques, machine learning, and scientific computing.
+This experiment provided practical understanding of fundamental data structures in Python.  
+Stacks, Queues, and Linked Lists are important building blocks used in algorithms, operating systems, databases, compilers, and software development.
+
+Understanding these data structures is essential for mastering Data Structures and Algorithms (DSA).
+
 
 
 -----------------------------------------------------
