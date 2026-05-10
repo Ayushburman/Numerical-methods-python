@@ -1004,20 +1004,263 @@ Interpolation is an important numerical method widely used in engineering, machi
 
 
 ---------------------------------------------------------
-# EXP 6 (2.2) :  implementing two common numerical integration algorithms, the trapezoidal rule and Simpson's rule
-## Description
+# EXP 6 (2.2) : Implementing Numerical Integration Algorithms using Trapezoidal Rule and Simpson’s Rule
 
-![image](https://github.com/user-attachments/assets/216726ad-4ebb-4690-a103-b1b088260b47)
+---
+
+# Aim
+
+To implement numerical integration techniques using the **Trapezoidal Rule** and **Simpson’s Rule** in Python for approximating definite integrals.
+
+---
+
+# Description
+
+Numerical Integration is used to approximate the value of a definite integral when finding an exact analytical solution is difficult or impossible.
+
+This experiment focuses on two widely used numerical integration methods:
+
+1. **Trapezoidal Rule**
+2. **Simpson’s Rule**
+
+These methods estimate the area under a curve by dividing the interval into smaller subintervals.
+
+Numerical integration is widely applied in:
+- Engineering
+- Physics
+- Data Science
+- Scientific Computing
+- Machine Learning
+- Signal Processing
+
+---
+
+# Theory
+
+## Definite Integral
+
+The value of a definite integral represents the area under a curve.
+
+General form:
+
+:contentReference[oaicite:0]{index=0}
+
+---
+
+# 1. Trapezoidal Rule
+
+The Trapezoidal Rule approximates the area under a curve using trapezoids.
+
+The interval \([a,b]\) is divided into \(n\) equal parts.
+
+### Formula
+
+:contentReference[oaicite:1]{index=1}
+
+where:
+
+\[
+h = \frac{b-a}{n}
+\]
+
+### Characteristics
+
+- Simple implementation
+- Moderate accuracy
+- Accuracy improves as \(n\) increases
+
+---
+
+# 2. Simpson’s Rule
+
+Simpson’s Rule approximates the curve using parabolic arcs instead of straight lines.
+
+It generally provides better accuracy than the Trapezoidal Rule.
+
+### Formula
+
+:contentReference[oaicite:2]{index=2}
+
+### Characteristics
+
+- Higher accuracy
+- Faster convergence
+- Requires even number of intervals
+
+---
+
+# Python Program
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
 
 
-## OUTPUT
+# Function definition
+def f(x):
+    return x**2
 
-![image](https://github.com/user-attachments/assets/c0410925-cd26-4faf-9ded-addda625b142)
+
+# Trapezoidal Rule
+def trapezoidal_rule(f, a, b, n):
+    h = (b - a) / n
+    x = np.linspace(a, b, n + 1)
+
+    y = f(x)
+
+    integral = h * (
+        (y[0] + y[-1]) / 2 + np.sum(y[1:-1])
+    )
+
+    return integral
 
 
-## LEARNING OUTCOME
+# Simpson's Rule
+def simpsons_rule(f, a, b, n):
+    if n % 2 != 0:
+        raise ValueError("n must be even for Simpson's Rule")
 
-![image](https://github.com/user-attachments/assets/784d0e5f-3d34-41fe-8868-5ce97607e6ba)
+    h = (b - a) / n
+    x = np.linspace(a, b, n + 1)
+
+    y = f(x)
+
+    integral = (h / 3) * (
+        y[0]
+        + y[-1]
+        + 4 * np.sum(y[1:-1:2])
+        + 2 * np.sum(y[2:-2:2])
+    )
+
+    return integral
+
+
+# Integration limits
+a = 0
+b = 2
+
+
+# True integral value
+true_value = 8 / 3
+
+print("True Integral Value:", true_value)
+
+
+# Different subintervals
+n_values = [4, 8, 16, 32, 64]
+
+for n in n_values:
+    trap_result = trapezoidal_rule(f, a, b, n)
+    simp_result = simpsons_rule(f, a, b, n)
+
+    print(
+        f"n={n}: "
+        f"Trapezoidal Result={trap_result:.4f}, "
+        f"Simpson's Result={simp_result:.4f}"
+    )
+
+
+# Plotting
+x_plot = np.linspace(a, b, 400)
+y_plot = f(x_plot)
+
+plt.figure(figsize=(8, 5))
+
+plt.plot(x_plot, y_plot, label='x² function')
+plt.fill_between(x_plot, y_plot, alpha=0.3, label='Area under the curve')
+
+plt.title("Numerical Integration Experiment")
+plt.xlabel("x")
+plt.ylabel("f(x)")
+
+plt.legend()
+plt.grid(True)
+
+plt.show()
+```
+
+---
+
+# Output
+
+```text
+True Integral Value: 2.67
+
+n=4  : Trapezoidal Result = 2.7500
+       Simpson's Result   = 2.6667
+
+n=8  : Trapezoidal Result = 2.6875
+       Simpson's Result   = 2.6667
+
+n=16 : Trapezoidal Result = 2.6719
+       Simpson's Result   = 2.6667
+
+n=32 : Trapezoidal Result = 2.6680
+       Simpson's Result   = 2.6667
+
+n=64 : Trapezoidal Result = 2.6670
+       Simpson's Result   = 2.6667
+```
+
+---
+
+# Graph Observation
+
+The graph shows:
+- The curve of the function \(f(x)=x^2\)
+- The shaded region representing the area under the curve
+- Approximation behavior of numerical integration methods
+
+As the number of subintervals increases:
+- Trapezoidal Rule becomes more accurate
+- Simpson’s Rule converges faster
+
+---
+
+# Learning Outcome
+
+After completing this experiment, the following concepts were understood:
+
+- Numerical approximation of definite integrals
+- Working principle of Trapezoidal Rule
+- Working principle of Simpson’s Rule
+- Effect of subinterval count on accuracy
+- Visualization of integration areas using Matplotlib
+- Comparison of numerical integration techniques
+
+---
+
+# Comparison of Methods
+
+| Feature | Trapezoidal Rule | Simpson’s Rule |
+|---|---|---|
+| Approximation Shape | Trapezoids | Parabolic Curves |
+| Accuracy | Moderate | High |
+| Convergence Speed | Slower | Faster |
+| Complexity | Simple | Slightly Complex |
+| Requirement | Any \(n\) | Even \(n\) only |
+
+---
+
+# Applications of Numerical Integration
+
+- Engineering simulations
+- Physics calculations
+- Area and volume estimation
+- Scientific modeling
+- Machine learning optimization
+- Probability and statistics
+
+---
+
+# Conclusion
+
+This experiment demonstrated the implementation of two important numerical integration techniques in Python.
+
+The Trapezoidal Rule provides a simple approximation method, while Simpson’s Rule offers significantly higher accuracy using parabolic approximations.
+
+These methods are essential tools in numerical analysis, scientific computing, engineering mathematics, and computational research.
+
 
 -----------------------------------------------------
 # EXP 7 (2.3) :  Implementing numerical differentiation algorithms , hands-on experiment implementing numerical differentiation in Python.
