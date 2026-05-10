@@ -1,48 +1,208 @@
-# NUMERICAL-METHODS-AND-OPTIMIZATION-USING-PYTHON
-# EXP 1  (1.1) : Review of Python Basics, Data Types, Control Structures, and Functions in Python
-## Description
+# EXP 1 (1.1) : Review of Python Basics, Data Types, Control Structures, and Functions in Python
 
-![image](https://github.com/user-attachments/assets/79c7e4c2-91b0-4ad0-9f98-88d967032049)
+---
 
-![image](https://github.com/user-attachments/assets/2989383d-c61e-48e7-bcfc-662588cc797a)
+# Description
 
-![image](https://github.com/user-attachments/assets/dc26b1ec-0681-4fcb-a9db-2a2ab1dee61f)
+This experiment provides an introduction to the fundamental concepts of Python programming.  
+It covers Python basics, commonly used data types, control structures, and functions.  
+The objective of this experiment is to build a strong foundation for advanced programming and numerical methods using Python.
 
-![image](https://github.com/user-attachments/assets/3f37797a-e172-4f91-8b12-2f252edc03be)
+---
 
-![image](https://github.com/user-attachments/assets/906e0b23-d7e9-49ab-9854-fd7aa7d9e312)
+# Theory
 
-![image](https://github.com/user-attachments/assets/e13a1fe9-3893-4ab6-8bad-ad34ea58477c)
+## 1. Python Basics
 
-![image](https://github.com/user-attachments/assets/e85ef27d-ca69-49e0-b913-486b3f3d6d0e)
+Python is a high-level, interpreted programming language known for its simple syntax and readability.
 
-![image](https://github.com/user-attachments/assets/9c70b64c-e384-40f3-a671-42a497a61e50)
+### Key Concepts
 
-![image](https://github.com/user-attachments/assets/71c33d73-25bc-4a71-984c-f6e05550a748)
+- **Variables**  
+  Variables are used to store data values dynamically.
 
-![image](https://github.com/user-attachments/assets/fc5edebd-5c20-4548-b98b-d45dbfc9a173)
+  ```python
+  name = "Shashank"
+  age = 22
+  ```
 
-![image](https://github.com/user-attachments/assets/f5ec8b14-bf82-4866-a55b-a5a65ad00d16)
+- **Print Statement**  
+  Used to display output on the console.
 
-![image](https://github.com/user-attachments/assets/aefa3476-8c01-47c7-a3ff-5f1f8a3667af)
+  ```python
+  print("Hello, World!")
+  ```
 
-![image](https://github.com/user-attachments/assets/9753e4a4-8d96-4ddc-9f5b-ab9313c8cb01)
+- **Comments**  
+  Comments are ignored by the Python interpreter and are used to improve code readability.
 
-![image](https://github.com/user-attachments/assets/ec03ea21-bb69-41e9-bcf3-c24aef4e2d4e)
+  ```python
+  # This is a comment
+  ```
 
-![image](https://github.com/user-attachments/assets/f2aed152-2659-4cec-820f-194250b7e6f2)
+---
 
-![image](https://github.com/user-attachments/assets/92b6085b-86d9-4fb3-b69d-f0bc78ecf966)
+## 2. Data Types
 
+Python supports multiple built-in data types.
 
-## OUTPUT
+### Numeric Types
 
-![image](https://github.com/user-attachments/assets/8d8d98c6-92d0-4719-86c7-655d2704e9a9)
+```python
+x = 10        # Integer
+y = 3.14      # Float
+z = 2 + 3j    # Complex
+```
 
+### String
 
-## LEARNING OUTCOME
+A sequence of characters enclosed within quotes.
 
-![image](https://github.com/user-attachments/assets/d763a071-68b4-4698-875b-48b416055b76)
+```python
+name = "Shashank"
+```
+
+### List
+
+An ordered and mutable collection.
+
+```python
+fruits = ["apple", "banana", "cherry"]
+```
+
+### Tuple
+
+An ordered but immutable collection.
+
+```python
+coordinates = (10, 20)
+```
+
+---
+
+## 3. Control Structures
+
+Control structures help in decision-making and repetition.
+
+### If Statement
+
+Used for conditional execution.
+
+```python
+age = 22
+
+if age >= 18:
+    print("Adult")
+```
+
+### For Loop
+
+Used for iterating over sequences.
+
+```python
+for fruit in fruits:
+    print(fruit)
+```
+
+### While Loop
+
+Executes repeatedly while the condition remains true.
+
+```python
+count = 1
+
+while count <= 5:
+    print(count)
+    count += 1
+```
+
+---
+
+## 4. Functions
+
+Functions are reusable blocks of code designed to perform specific tasks.
+
+### Function Definition
+
+```python
+def greet(name):
+    return f"Hello, {name}!"
+```
+
+### Function Call
+
+```python
+print(greet("Shashank"))
+```
+
+### Default Parameters
+
+```python
+def introduce(name, age=18):
+    print(f"My name is {name} and I am {age} years old.")
+```
+
+---
+
+# Output
+
+```text
+Hello, World!
+
+Name: Shashank, Age: 22
+Numeric Types: 10 3.14 (2+3j)
+
+Hello, Shashank!
+
+List of fruits:
+['apple', 'banana', 'cherry']
+
+Coordinates Tuple:
+(10, 20)
+
+Adult
+
+Iterating over list of fruits:
+apple
+banana
+cherry
+
+Counting to 5 using while loop:
+1
+2
+3
+4
+5
+
+Hello, Shashank!
+
+Square of 4: 16
+
+My name is Shashank and I am 22 years old.
+My name is Raj and I am 25 years old.
+```
+
+---
+
+# Learning Outcome
+
+After completing this experiment, the following concepts were understood:
+
+- Basics of Python programming
+- Variable declaration and usage
+- Python data types
+- Decision-making and looping statements
+- Function creation and usage
+- Use of default parameters
+- Writing clean and readable Python code
+
+---
+
+# Conclusion
+
+This experiment helped in understanding the core building blocks of Python programming.  
+These concepts form the foundation for advanced topics such as data structures, numerical methods, optimization techniques, machine learning, and scientific computing.
+
 
 -----------------------------------------------------
 # EXP 2 (1.2) : Implementations of different Data Structures in python
