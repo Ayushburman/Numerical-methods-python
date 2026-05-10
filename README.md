@@ -806,19 +806,202 @@ It is widely used in numerical analysis, scientific computing, engineering mathe
 
 
 ---------------------------------------------------------
-# EXP 5 (2.1) : Hands-on interpolation exercises using Python libraries 
-## Description
+````md id="p72xla"
+# EXP 5 (2.1) : Hands-on Interpolation Exercises Using Python Libraries
 
-![image](https://github.com/user-attachments/assets/0f682447-384a-4581-9c4f-60f39d0e5829)
+---
+
+# Aim
+
+To perform interpolation techniques using Python libraries such as NumPy, SciPy, and Matplotlib for estimating intermediate data values.
+
+---
+
+# Description
+
+Interpolation is a mathematical technique used to estimate unknown values between known data points.
+
+It is widely used in:
+- Data Analysis
+- Engineering
+- Scientific Computing
+- Machine Learning
+- Signal Processing
+
+In Python, libraries such as **NumPy** and **SciPy** provide efficient tools for performing interpolation operations.
+
+### Libraries Used
+
+- **NumPy**  
+  Used for numerical computations and array handling.
+
+- **SciPy**  
+  Provides advanced mathematical functions including interpolation methods.
+
+- **Matplotlib**  
+  Used for plotting and visualizing interpolation curves.
+
+---
+
+# Theory
+
+## What is Interpolation?
+
+Interpolation estimates values inside the range of a known dataset.
+
+Suppose we know:
+
+| x | y |
+|---|---|
+| 1 | 2 |
+| 2 | 8 |
+| 3 | 18 |
+
+Interpolation helps estimate values between these points.
+
+---
+
+# Types of Interpolation Used
+
+---
+
+## 1. Linear Interpolation
+
+Linear interpolation connects data points using straight lines.
+
+It is simple and computationally efficient.
+
+### Formula
+
+:contentReference[oaicite:0]{index=0}
+
+### Characteristics
+
+- Fast computation
+- Piecewise linear approximation
+- Less smooth output
+
+---
+
+## 2. Cubic Spline Interpolation
+
+Cubic spline interpolation fits smooth cubic curves between data points.
+
+It provides smoother and more accurate interpolation.
+
+### Characteristics
+
+- Smooth continuous curve
+- Better approximation
+- Widely used in scientific applications
+
+---
+
+# Python Program
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.interpolate import interp1d
 
 
-## OUTPUT
+# Original Data Points
+x = np.array([1, 2, 3, 4, 5])
+y = np.array([2, 8, 18, 32, 50])
 
-![image](https://github.com/user-attachments/assets/3d90792f-9394-4420-be48-9db1664be096)
+
+# Creating interpolation functions
+linear_interp = interp1d(x, y, kind='linear')
+cubic_interp = interp1d(x, y, kind='cubic')
 
 
-## LEARNING OUTCOME
-![image](https://github.com/user-attachments/assets/836dd8c5-54ea-4ee8-96a7-ffb8641f8554)
+# Generating smooth x values
+x_new = np.linspace(1, 5, 100)
+
+
+# Interpolated values
+y_linear = linear_interp(x_new)
+y_cubic = cubic_interp(x_new)
+
+
+# Plotting
+plt.figure(figsize=(8, 5))
+
+plt.plot(x, y, 'o', label='Original Data')
+plt.plot(x_new, y_linear, label='Linear Interpolation')
+plt.plot(x_new, y_cubic, label='Cubic Spline Interpolation')
+
+plt.title("Interpolation Exercise")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+
+plt.legend()
+plt.grid(True)
+
+plt.show()
+```
+
+---
+
+# Output
+
+## Interpolation Graph
+
+- Blue dots represent original data points
+- Linear interpolation creates straight-line connections
+- Cubic spline interpolation creates smooth curves
+
+The graph demonstrates how interpolation estimates intermediate values between known points.
+
+---
+
+# Learning Outcome
+
+After completing this experiment, the following concepts were understood:
+
+- Fundamentals of interpolation techniques
+- Difference between linear and cubic interpolation
+- Use of SciPy interpolation functions
+- Data visualization using Matplotlib
+- Estimating intermediate data values
+- Practical applications of interpolation in scientific computing
+
+---
+
+# Comparison of Interpolation Methods
+
+| Feature | Linear Interpolation | Cubic Spline Interpolation |
+|---|---|---|
+| Curve Type | Straight Lines | Smooth Curves |
+| Accuracy | Moderate | High |
+| Smoothness | Low | Very Smooth |
+| Complexity | Simple | More Advanced |
+| Computational Cost | Low | Moderate |
+
+---
+
+# Applications of Interpolation
+
+- Data smoothing
+- Image processing
+- Computer graphics
+- Weather prediction
+- Signal reconstruction
+- Engineering simulations
+- Scientific data analysis
+
+---
+
+# Conclusion
+
+This experiment demonstrated the implementation of interpolation techniques using Python scientific libraries.
+
+Linear interpolation provides a simple approximation method, while cubic spline interpolation generates smoother and more accurate curves.
+
+Interpolation is an important numerical method widely used in engineering, machine learning, data science, and scientific research.
+
+````
+
 
 ---------------------------------------------------------
 # EXP 6 (2.2) :  implementing two common numerical integration algorithms, the trapezoidal rule and Simpson's rule
