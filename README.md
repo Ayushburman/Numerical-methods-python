@@ -1263,20 +1263,238 @@ These methods are essential tools in numerical analysis, scientific computing, e
 
 
 -----------------------------------------------------
-# EXP 7 (2.3) :  Implementing numerical differentiation algorithms , hands-on experiment implementing numerical differentiation in Python.
+# EXP 7 (2.3) : Implementing Numerical Differentiation Algorithms in Python
 
-## Description
+---
 
-![image](https://github.com/user-attachments/assets/f378a80e-1de1-4ef4-b4a6-96d2ed25ae29)
+# Aim
 
-## OUTPUT
+To implement numerical differentiation techniques in Python using the **Forward Difference Method** for approximating derivatives of functions.
 
-![image](https://github.com/user-attachments/assets/234916b7-beab-43fb-a43e-886fbb6fd693)
+---
+
+# Description
+
+Numerical Differentiation is a technique used to approximate the derivative of a function when obtaining an analytical derivative is difficult or computationally expensive.
+
+This experiment demonstrates:
+- Numerical approximation of derivatives
+- Forward Difference Method
+- Effect of step size (\(h\)) on accuracy
+- Visualization of tangent approximations
+
+The experiment uses the function:
 
 
-## LEARNING OUTCOME
+::contentReference[oaicite:0]{index=0}
 
-![image](https://github.com/user-attachments/assets/3b4bec82-80fe-41c6-b8a3-c1a92ebc9fbf)
+
+whose true derivative is:
+
+:contentReference[oaicite:1]{index=1}
+
+---
+
+# Theory
+
+## Numerical Differentiation
+
+The derivative of a function represents the rate of change of the function with respect to its variable.
+
+General derivative definition:
+
+:contentReference[oaicite:2]{index=2}
+
+Numerical methods approximate this derivative using small finite values of \(h\).
+
+---
+
+# Forward Difference Method
+
+The Forward Difference Method estimates the derivative using:
+
+:contentReference[oaicite:3]{index=3}
+
+where:
+- \(x\) = point of evaluation
+- \(h\) = small step size
+
+---
+
+# Working Principle
+
+1. Select a function \(f(x)\)
+2. Choose a point \(x\)
+3. Select small values of \(h\)
+4. Compute numerical derivative
+5. Compare with analytical derivative
+
+---
+
+# Effect of Step Size
+
+Smaller values of \(h\):
+- Increase approximation accuracy
+- Reduce truncation error
+
+However:
+- Extremely small \(h\) may introduce floating-point errors
+
+---
+
+# Python Program
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+# Function definition
+def func(x):
+    return x**2
+
+
+# True derivative
+def true_derivative(x):
+    return 2 * x
+
+
+# Forward Difference Method
+def forward_difference(f, x, h):
+    return (f(x + h) - f(x)) / h
+
+
+# Point of differentiation
+x0 = 2.0
+
+
+# Different step sizes
+h_values = [0.1, 0.01, 0.001]
+
+
+# True derivative value
+true_value = true_derivative(x0)
+
+print("True Derivative Value:", true_value)
+
+
+# Numerical derivatives
+for h in h_values:
+    numerical = forward_difference(func, x0, h)
+
+    print(f"h={h}: Numerical Derivative={numerical:.4f}")
+
+
+# Plotting
+x = np.linspace(0, 4, 400)
+y = func(x)
+
+plt.figure(figsize=(8, 5))
+
+plt.plot(x, y, label='x² function')
+
+
+# Plot tangents for different h values
+colors = ['orange', 'green', 'red']
+
+for h, color in zip(h_values, colors):
+    slope = forward_difference(func, x0, h)
+
+    tangent = func(x0) + slope * (x - x0)
+
+    plt.plot(
+        x,
+        tangent,
+        linestyle='--',
+        color=color,
+        label=f'Tangent (h={h})'
+    )
+
+
+# Point of interest
+plt.scatter(x0, func(x0), color='red', label='Point of Interest')
+
+plt.title("Numerical Differentiation Experiment")
+
+plt.xlabel("x")
+plt.ylabel("f(x)")
+
+plt.legend()
+plt.grid(True)
+
+plt.show()
+```
+
+---
+
+# Output
+
+```text
+True Derivative Value: 4.0
+
+h = 0.1   : Numerical Derivative = 4.1000
+h = 0.01  : Numerical Derivative = 4.0100
+h = 0.001 : Numerical Derivative = 4.0010
+```
+
+---
+
+# Graph Observation
+
+The graph shows:
+- The function \(f(x)=x^2\)
+- Tangent approximations using different step sizes
+- Point of differentiation at \(x=2\)
+
+As \(h\) becomes smaller:
+- Numerical derivative approaches the true derivative
+- Tangent approximation becomes more accurate
+
+---
+
+# Learning Outcome
+
+After completing this experiment, the following concepts were understood:
+
+- Fundamentals of numerical differentiation
+- Forward Difference approximation method
+- Relationship between derivatives and tangent lines
+- Effect of step size on numerical accuracy
+- Visualization of derivative approximations using Matplotlib
+- Practical implementation of numerical algorithms in Python
+
+---
+
+# Comparison: Analytical vs Numerical Differentiation
+
+| Feature | Analytical Differentiation | Numerical Differentiation |
+|---|---|---|
+| Accuracy | Exact | Approximate |
+| Complexity | Can be difficult | Easier computationally |
+| Symbolic Formula Needed | Yes | No |
+| Computational Use | Limited | Widely used in simulations |
+
+---
+
+# Applications of Numerical Differentiation
+
+- Scientific simulations
+- Engineering analysis
+- Machine learning optimization
+- Signal processing
+- Computational physics
+- Numerical modeling
+
+---
+
+# Conclusion
+
+This experiment demonstrated the implementation of numerical differentiation using the Forward Difference Method.
+
+The experiment highlighted how derivatives can be approximated numerically and how step size influences approximation accuracy.
+
+Numerical differentiation is an essential concept in numerical analysis, scientific computing, optimization, and engineering applications.
+
 
 ------------------------------------------------------
 # EXP 8 (3.1) :  Write a program on Lagrange Multipliers in Python AIM: To implement procedures of Lagrange Multipliers in Python.
