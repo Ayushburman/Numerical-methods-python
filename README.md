@@ -435,24 +435,206 @@ Understanding these data structures is essential for mastering Data Structures a
 
 
 -----------------------------------------------------
+````md id="m48pzc"
+# EXP 3 (1.3) : Implementing Root-Finding Algorithms (Bisection Method and Newton-Raphson Method) in Python
+
+---
+
+# Description
+
+Root-finding algorithms are numerical techniques used to determine the values of \(x\) for which:
+
+:contentReference[oaicite:0]{index=0}
+
+These values are called the **roots** or **zeros** of the function.
+
+This experiment focuses on two important numerical methods:
+
+1. **Bisection Method**
+2. **Newton-Raphson Method**
+
+These methods are widely used in scientific computing, engineering mathematics, optimization, and numerical analysis.
+
+---
+
+# Theory
+
+## 1. Bisection Method
+
+The **Bisection Method** is an iterative root-finding technique that repeatedly divides an interval into two halves to locate the root.
+
+### Working Principle
+
+If a continuous function changes sign over an interval \([a,b]\), then a root exists between \(a\) and \(b\).
+
+Mathematically:
+
+\[
+f(a)\cdot f(b) < 0
+\]
+
+The midpoint is calculated as:
+
+:contentReference[oaicite:1]{index=1}
+
+The interval containing the root is selected repeatedly until sufficient accuracy is achieved.
+
+### Advantages
+
+- Simple and reliable
+- Guaranteed convergence for continuous functions
+
+### Disadvantages
+
+- Slower convergence compared to other methods
+
+---
+
+## 2. Newton-Raphson Method
+
+The **Newton-Raphson Method** is a fast iterative technique that uses derivatives to approximate roots.
+
+Starting from an initial guess \(x_0\), the next approximation is computed using:
+
+:contentReference[oaicite:2]{index=2}
+
+### Working Principle
+
+- Start with an initial estimate
+- Compute function value and derivative
+- Update the estimate iteratively
+- Repeat until convergence
+
+### Advantages
+
+- Very fast convergence
+- High accuracy
+
+### Disadvantages
+
+- Requires derivative calculation
+- May fail for poor initial guesses
+
+---
+
+# Python Program
+
+```python
+# Bisection Method
+def bisection_method(f, a, b, tol=1e-6):
+    if f(a) * f(b) >= 0:
+        print("Bisection method fails.")
+        return None
+
+    while (b - a) / 2 > tol:
+        c = (a + b) / 2
+
+        if f(c) == 0:
+            return c
+
+        elif f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+
+    return (a + b) / 2
 
 
---------------------------------------------------------
-# EXP 3  (1.3) : Implementing Root-finding Algorithms (Bisection method, Newton-Raphson method) in Python
-## Description
+# Newton-Raphson Method
+def newton_raphson(f, df, x0, tol=1e-6, max_iter=100):
+    x = x0
 
-![image](https://github.com/user-attachments/assets/85a0c0e8-c94d-4d25-af3f-3c0561d0ac6f)
+    for i in range(max_iter):
+        fx = f(x)
+        dfx = df(x)
+
+        if dfx == 0:
+            print("Derivative is zero.")
+            return None
+
+        x_new = x - fx / dfx
+
+        if abs(x_new - x) < tol:
+            return x_new
+
+        x = x_new
+
+    print("Maximum iterations reached.")
+    return None
 
 
-## OUTPUT
+# Function for Bisection Method
+def f1(x):
+    return x**2 - 4
 
-![image](https://github.com/user-attachments/assets/7f8450a5-d86a-40f1-afd2-a523ce8ec66e)
+
+# Function and derivative for Newton-Raphson Method
+def f2(x):
+    return x**2 - 9
 
 
+def df2(x):
+    return 2 * x
 
-## LEARNING OUTCOME
 
-![image](https://github.com/user-attachments/assets/242fb6b0-ee4c-46e8-8550-b51ca43df29f)
+# Using Bisection Method
+root_bisection = bisection_method(f1, 0, 3)
+
+# Using Newton-Raphson Method
+root_newton = newton_raphson(f2, df2, 5)
+
+
+# Display Results
+print("Bisection Method Root:", root_bisection)
+print("Newton-Raphson Method Root:", root_newton)
+```
+
+---
+
+# Output
+
+```text
+Bisection Method Root: 2.000000238418579
+Newton-Raphson Method Root: 3.0
+```
+
+---
+
+# Learning Outcome
+
+After completing this experiment, the following concepts were understood:
+
+- Fundamentals of root-finding algorithms
+- Working principle of the Bisection Method
+- Newton-Raphson iterative approximation technique
+- Importance of derivatives in numerical computation
+- Accuracy and convergence of iterative methods
+- Implementation of numerical algorithms using Python
+
+---
+
+# Comparison of Methods
+
+| Feature | Bisection Method | Newton-Raphson Method |
+|---|---|---|
+| Convergence Speed | Slow | Fast |
+| Requires Derivative | No | Yes |
+| Accuracy | Moderate | High |
+| Stability | Very Stable | Depends on initial guess |
+| Complexity | Simple | Slightly Complex |
+
+---
+
+# Conclusion
+
+This experiment demonstrated two important numerical root-finding techniques used in computational mathematics.
+
+The **Bisection Method** provides reliable convergence through interval halving, while the **Newton-Raphson Method** achieves faster convergence using derivatives.
+
+These methods form the foundation of advanced numerical analysis, optimization algorithms, scientific simulations, and engineering computations.
+
+````
+
 
 ---------------------------------------------------------------
 # EXP 4 (1.4) :  Implementing Secant Algorithms in Python AIM: Implementing Secant Algorithms in Python
