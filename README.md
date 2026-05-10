@@ -435,19 +435,7 @@ Understanding these data structures is essential for mastering Data Structures a
 
 
 -----------------------------------------------------
-# EXP 2 (1.2) : Implementations of different Data Structures in python
-## Descriptions 
 
-![image](https://github.com/user-attachments/assets/ed98a0f2-30a5-4a2d-bc60-6631be511199)
-
-## OUTPUT
-
-![image](https://github.com/user-attachments/assets/2a1e9943-2d4b-45aa-b5cc-ee1e6eb2486b)
-
-
-## LEARNING OUTCOME
-
-![image](https://github.com/user-attachments/assets/a528593d-fb5c-4380-b3dd-0e844894b5f0)
 
 --------------------------------------------------------
 # EXP 3  (1.3) : Implementing Root-finding Algorithms (Bisection method, Newton-Raphson method) in Python
