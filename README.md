@@ -637,20 +637,173 @@ These methods form the foundation of advanced numerical analysis, optimization a
 
 
 ---------------------------------------------------------------
-# EXP 4 (1.4) :  Implementing Secant Algorithms in Python AIM: Implementing Secant Algorithms in Python
-## Description
+````md id="k39vxn"
+# EXP 4 (1.4) : Implementing Secant Algorithm in Python
 
-![image](https://github.com/user-attachments/assets/978db41a-151b-4711-88f5-59085b379f2e)
+---
+
+# Aim
+
+To implement the **Secant Method** in Python for finding the roots of nonlinear equations using iterative numerical techniques.
+
+---
+
+# Description
+
+The **Secant Method** is an iterative numerical root-finding algorithm used to approximate the roots of equations.
+
+Unlike the Newton-Raphson Method, the Secant Method does **not require derivatives**.  
+Instead, it approximates the derivative using two initial guesses and draws a secant line between them.
+
+The point where the secant line intersects the x-axis becomes the next approximation of the root.
+
+The Secant Method is generally faster than the Bisection Method and computationally simpler than the Newton-Raphson Method.
+
+---
+
+# Theory
+
+## Secant Method
+
+The Secant Method is based on successive approximations using two nearby points.
+
+Given two initial guesses:
+
+\[
+x_0 \quad \text{and} \quad x_1
+\]
+
+the next approximation is computed using:
+
+:contentReference[oaicite:0]{index=0}
+
+The iterations continue until:
+- the approximation error becomes very small, or
+- the maximum number of iterations is reached.
+
+---
+
+# Working Principle
+
+1. Select two initial approximations \(x_0\) and \(x_1\)
+2. Evaluate the function values
+3. Construct a secant line between the points
+4. Compute the next approximation
+5. Repeat until convergence
+
+---
+
+# Advantages
+
+- Faster convergence than Bisection Method
+- Does not require derivative calculation
+- Simple implementation
+
+---
+
+# Disadvantages
+
+- Convergence is not always guaranteed
+- Sensitive to poor initial guesses
+- Can fail if denominator becomes zero
+
+---
+
+# Python Program
+
+```python
+def secant_method(f, x0, x1, tol=1e-10, max_iter=100):
+    iteration = 0
+
+    while iteration < max_iter:
+        fx0 = f(x0)
+        fx1 = f(x1)
+
+        if fx1 - fx0 == 0:
+            print("Division by zero error.")
+            return None
+
+        # Secant Formula
+        x2 = x1 - fx1 * (x1 - x0) / (fx1 - fx0)
+
+        # Check convergence
+        if abs(x2 - x1) < tol:
+            return x2, iteration + 1
+
+        x0 = x1
+        x1 = x2
+
+        iteration += 1
+
+    print("Maximum iterations reached.")
+    return None
 
 
-## OUTPUT
+# Function definition
+def f(x):
+    return x**2 - 4
 
-![image](https://github.com/user-attachments/assets/db65d6b6-dd0f-45ca-8a1e-13b881e58195)
+
+# Initial guesses
+x0 = 1
+x1 = 3
 
 
-## LEARNING OUTCOME
+# Calling Secant Method
+result = secant_method(f, x0, x1)
 
-![image](https://github.com/user-attachments/assets/89db5869-0015-4729-83a9-bc1802997791)
+
+# Output
+if result:
+    root, iterations = result
+    print("Root found:", root)
+    print("Iterations:", iterations)
+```
+
+---
+
+# Output
+
+```text
+Root found: 2.0000000000004996
+Iterations: 6
+```
+
+---
+
+# Learning Outcome
+
+After completing this experiment, the following concepts were understood:
+
+- Working principle of the Secant Method
+- Derivative-free root-finding techniques
+- Iterative approximation methods
+- Convergence behavior of numerical algorithms
+- Importance of tolerance and iteration limits
+- Python implementation of numerical methods
+
+---
+
+# Comparison with Other Root-Finding Methods
+
+| Method | Requires Derivative | Speed | Stability |
+|---|---|---|
+| Bisection Method | No | Slow | Very Stable |
+| Newton-Raphson Method | Yes | Very Fast | Depends on initial guess |
+| Secant Method | No | Fast | Moderately Stable |
+
+---
+
+# Conclusion
+
+This experiment demonstrated the implementation of the Secant Method for solving nonlinear equations numerically.
+
+The Secant Method provides a good balance between computational efficiency and implementation simplicity since it avoids derivative calculations while still converging rapidly in many practical cases.
+
+It is widely used in numerical analysis, scientific computing, engineering mathematics, and optimization problems.
+
+````
+
 
 ---------------------------------------------------------
 # EXP 5 (2.1) : Hands-on interpolation exercises using Python libraries 
